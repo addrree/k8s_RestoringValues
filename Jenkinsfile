@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'l1' }
+  agent { label 'tool' }
 
   environment {
     PYTHONNOUSERSITE = "1"
