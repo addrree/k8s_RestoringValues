@@ -47,9 +47,21 @@ pipeline {
     stage('Docker login + push to YCR') {
       steps {
         sh '''
-          set -e
-          docker login --username iam --password "$(yc iam create-token)" cr.yandex
-          docker push "$IMAGE"
+          set -euo pipefail
+
+          YC=/home/ubuntu/yandex-cloud/bin/yc
+
+          # если yc не найден — сразу понятная ошибка
+          test -x "$YC" || (echo "yc not found at $YC" && exit 1)
+
+          echo "==> Get IAM token"
+          TOKEN="$($YC iam create-token)"
+
+          echo "==> Docker login to YCR"
+          echo "$TOKEN" | docker login --username iam --password-stdin cr.yandex
+
+          echo "==> Push image"
+          docker push cr.yandex/crp7njmi04tok4e72ohg/restoringvalues:latest
         '''
       }
     }
