@@ -39,7 +39,7 @@ pipeline {
       steps {
         sh '''
           set -e
-          docker build -t "$IMAGE" -f docker/Dockerfile .
+          docker build -t "$IMAGE" -f Docker/Dockerfile .
         '''
       }
     }

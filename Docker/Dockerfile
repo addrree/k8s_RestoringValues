@@ -16,7 +16,7 @@ COPY deploy_art/dist/restoringvalues-0.1.0-py3-none-any.whl /tmp/app.whl
 RUN pip install --no-cache-dir /tmp/app.whl
 
 # стартовый скрипт
-COPY docker/start.sh /start.sh
+COPY Docker/start.sh /start.sh
 RUN chmod +x /start.sh
 
 EXPOSE 8092 8093 8094 8095
