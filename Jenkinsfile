@@ -23,7 +23,7 @@ pipeline {
         sh 'rm -rf deploy_art && mkdir -p deploy_art'
         copyArtifacts(projectName: 'AndreyIL/AndreyLAb2', selector: lastSuccessful())
         // если артефакты лежат в dist/ и корне — подстрой под твою L2
-        sh '''
+        sh '''#!/usr/bin/env bash
           set -e
           echo "Artifacts:"
           find . -maxdepth 3 -type f -name "*.tgz" -o -name "*.whl" | sed 's|^./||'
@@ -37,7 +37,7 @@ pipeline {
 
     stage('Docker build') {
       steps {
-        sh '''
+        sh '''#!/usr/bin/env bash
           set -e
           docker build -t "$IMAGE" -f Docker/Dockerfile .
         '''
@@ -46,7 +46,7 @@ pipeline {
 
     stage('Docker login + push to YCR') {
       steps {
-        sh '''
+        sh '''#!/usr/bin/env bash
           set -euo pipefail
 
           YC=/home/ubuntu/yandex-cloud/bin/yc
@@ -68,7 +68,7 @@ pipeline {
 
     stage('Deploy to Kubernetes') {
       steps {
-        sh '''
+        sh '''#!/usr/bin/env bash
           set -e
           kubectl get ns "$NAMESPACE" >/dev/null 2>&1 || kubectl create ns "$NAMESPACE"
 
@@ -87,7 +87,7 @@ pipeline {
 
     stage('Show logs') {
       steps {
-        sh '''
+        sh '''#!/usr/bin/env bash
           set -e
           POD=$(kubectl get pods -n "$NAMESPACE" -l app=restoringvalues -o jsonpath="{.items[0].metadata.name}")
           echo "POD=$POD"
