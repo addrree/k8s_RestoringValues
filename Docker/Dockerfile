@@ -12,8 +12,8 @@ COPY deploy_art/app-restoringvalues.tgz /tmp/app-restoringvalues.tgz
 RUN mkdir -p /opt/restoringvalues/current \
  && tar -xzf /tmp/app-restoringvalues.tgz -C /opt/restoringvalues/current
 
-COPY deploy_art/dist/restoringvalues-0.1.0-py3-none-any.whl /tmp/app.whl
-RUN pip install --no-cache-dir /tmp/app.whl
+COPY deploy_art/dist/ /tmp/dist/
+RUN pip install --no-cache-dir /tmp/dist/*.whl
 
 # стартовый скрипт
 COPY Docker/start.sh /start.sh
