@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 mkdir -p /opt/restoringvalues/run
-mkdir -p /opt/restoringvalues/current
+
 cd /opt/restoringvalues/current/app
 
 # на всякий случай
