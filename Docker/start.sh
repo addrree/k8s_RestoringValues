@@ -2,7 +2,7 @@
 set -e
 mkdir -p /opt/restoringvalues/run
 mkdir -p /opt/restoringvalues/current
-cd /opt/restoringvalues/current
+cd /opt/restoringvalues/current/app
 
 # на всякий случай
 rm -f /opt/restoringvalues/run/*.pid || true
