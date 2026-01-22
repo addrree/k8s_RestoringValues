@@ -19,4 +19,11 @@ start_bg reciever Reciever/reciever.py
 start_bg business Business/business.py
 
 # чтобы контейнер не завершился — ждём
-tail -f /opt/restoringvalues/run/*.log
+touch /opt/restoringvalues/run/simulator.log \
+      /opt/restoringvalues/run/reciever.log \
+      /opt/restoringvalues/run/business.log
+
+# чтобы контейнер не завершился — стримим логи во stdout
+tail -n 0 -F /opt/restoringvalues/run/simulator.log \
+          /opt/restoringvalues/run/reciever.log \
+          /opt/restoringvalues/run/business.log
