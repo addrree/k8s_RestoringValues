@@ -9,8 +9,8 @@ WORKDIR /opt/restoringvalues
 
 # Артефакты (Jenkins положит в workspace и передаст в docker build как build context)
 COPY deploy_art/app-restoringvalues.tgz /tmp/app-restoringvalues.tgz
-RUN mkdir -p /opt/restoringvalues/current \
- && tar -xzf /tmp/app-restoringvalues.tgz -C /opt/restoringvalues/current
+RUN mkdir -p /opt/restoringvalues/current/app \
+ && tar -xzf /tmp/app-restoringvalues.tgz -C /opt/restoringvalues/current/app
 
 COPY deploy_art/dist/ /tmp/dist/
 RUN pip install --no-cache-dir /tmp/dist/*.whl
