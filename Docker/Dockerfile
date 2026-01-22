@@ -7,18 +7,17 @@ RUN mkdir -p /opt/restoringvalues/{releases,current,run}
 
 WORKDIR /opt/restoringvalues
 
-# Артефакты (Jenkins положит в workspace и передаст в docker build как build context)
 COPY deploy_art/app-restoringvalues.tgz /tmp/app-restoringvalues.tgz
+COPY deploy_art/dist/restoringvalues-0.1.0-py3-none-any.whl /tmp/restoringvalues-0.1.0-py3-none-any.whl
+
+# ВАЖНО: распаковываем В app/
 RUN mkdir -p /opt/restoringvalues/current/app \
  && tar -xzf /tmp/app-restoringvalues.tgz -C /opt/restoringvalues/current/app
 
-COPY deploy_art/dist/ /tmp/dist/
-RUN pip install --no-cache-dir /tmp/dist/*.whl
+# wheel ставим по реальному имени файла
+RUN pip install --no-cache-dir /tmp/restoringvalues-0.1.0-py3-none-any.whl
 
-# стартовый скрипт
-COPY Docker/start.sh /start.sh
+COPY docker/start.sh /start.sh
 RUN chmod +x /start.sh
-
-EXPOSE 8092 8093 8094 8095
 
 CMD ["/start.sh"]
