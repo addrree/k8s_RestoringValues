@@ -17,7 +17,7 @@ RUN mkdir -p /opt/restoringvalues/current/app \
 # wheel ставим по реальному имени файла
 RUN pip install --no-cache-dir /tmp/restoringvalues-0.1.0-py3-none-any.whl
 
-COPY docker/start.sh /start.sh
+COPY Docker/start.sh /start.sh
 RUN chmod +x /start.sh
 
 CMD ["/start.sh"]
