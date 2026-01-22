@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -e
-
-cd /opt/restoringvalues/current/app
+mkdir -p /opt/restoringvalues/run
+mkdir -p /opt/restoringvalues/current
+cd /opt/restoringvalues/current
 
 # на всякий случай
 rm -f /opt/restoringvalues/run/*.pid || true

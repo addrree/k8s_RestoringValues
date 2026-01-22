@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y tar && rm -rf /var/lib/apt/lists/*
 
 # структура как на VM
 RUN mkdir -p /opt/restoringvalues/{releases,current,run}
-
+RUN mkdir -p /opt/restoringvalues/run
 WORKDIR /opt/restoringvalues
 
 COPY deploy_art/app-restoringvalues.tgz /tmp/app-restoringvalues.tgz
