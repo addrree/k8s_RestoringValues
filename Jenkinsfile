@@ -61,7 +61,7 @@ pipeline {
           echo "$TOKEN" | docker login --username iam --password-stdin cr.yandex
 
           echo "==> Push image"
-          docker push cr.yandex/crp7njmi04tok4e72ohg/restoringvalues:latest
+          docker push cr.yandex/crpist2uge71cahfb48e/restoringvalues:latest
         '''
       }
     }
