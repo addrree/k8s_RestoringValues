@@ -3,8 +3,8 @@ pipeline {
 
   environment {
     PYTHONNOUSERSITE = "1"
-    NAMESPACE        = "andreylab7"
-    REGISTRY_ID      = "crp7njmi04tok4e72ohg"
+    NAMESPACE        = "koganlab7"
+    REGISTRY_ID      = "crpist2uge71cahfb48e"
     IMAGE            = "cr.yandex/${REGISTRY_ID}/restoringvalues:latest"
   }
 
@@ -21,7 +21,7 @@ pipeline {
     stage('Fetch artifacts from L2') {
       steps {
         sh 'rm -rf deploy_art && mkdir -p deploy_art'
-        copyArtifacts(projectName: 'AndreyIL/AndreyLAb2', selector: lastSuccessful())
+        copyArtifacts(projectName: 'KoganSK/KoganSK_pipeline', selector: lastSuccessful())
         // если артефакты лежат в dist/ и корне — подстрой под твою L2
         sh '''#!/usr/bin/env bash
           set -e
